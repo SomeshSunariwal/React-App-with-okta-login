@@ -1,11 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import OktaAuthHandler from "./Component/OktaAuthHandler/OktaAuthHandler";
 
 const App = () => (
-  <Router>
+  <BrowserRouter>
     <OktaAuthHandler />
-  </Router>
+  </BrowserRouter>
 );
 
 export default App;

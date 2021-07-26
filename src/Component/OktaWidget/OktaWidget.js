@@ -4,6 +4,7 @@ import "@okta/okta-signin-widget/dist/css/okta-sign-in.min.css";
 
 const OktaSignInWidget = ({ config, onSuccess, onError }) => {
   const widgetRef = useRef();
+
   useEffect(() => {
     if (!widgetRef.current) return false;
 
