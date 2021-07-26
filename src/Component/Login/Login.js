@@ -1,28 +1,27 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
-import OktaSignInWidget from '../OktaWidget/OktaWidget';
-import { useOktaAuth } from '@okta/okta-react';
+import React from "react";
+import { Redirect } from "react-router-dom";
+import OktaSignInWidget from "../OktaWidget/OktaWidget";
+import { useOktaAuth } from "@okta/okta-react";
 
 const Login = ({ config }) => {
-    const { oktaAuth, authState } = useOktaAuth();
+  const { oktaAuth, authState } = useOktaAuth();
 
-    const onSuccess = (tokens) => {
-        oktaAuth.handleLoginRedirect(tokens);
-        console.log(tokens);
-    };
+  const onSuccess = (tokens) => {
+    oktaAuth.handleLoginRedirect(tokens);
+    console.log(tokens);
+  };
 
-    const onError = (err) => {
-        console.log('error logging in', err);
-    };
+  const onError = (err) => {
+    console.log("error logging in", err);
+  };
 
-    if (!authState) return null;
+  if (!authState) return null;
 
-    return authState.isAuthenticated ?
-        <Redirect to={{ pathname: '/' }} /> :
-        <OktaSignInWidget
-            config={config}
-            onSuccess={onSuccess}
-            onError={onError} />;
+  return authState.isAuthenticated ? (
+    <Redirect to={{ pathname: "/" }} />
+  ) : (
+    <OktaSignInWidget config={config} onSuccess={onSuccess} onError={onError} />
+  );
 };
 
 export default Login;
