@@ -21,10 +21,34 @@ const Home = () => {
 
   return (
     <div>
-      <Link to="/">Home</Link>
-      <br />
-      <Link to="/protected">Protected</Link>
-      <br />
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="/">
+            <img
+              src="img.png"
+              alt=""
+              width="30"
+              height="24"
+              className="d-inline-block align-text-top"
+            />
+            Data Center
+          </a>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <button>
+                  <Link to="/">Home</Link>
+                </button>
+              </li>
+              <li className="nav-item">
+                <button>
+                  <Link to="/protected">Protected</Link>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
       {button}
     </div>
   );
