@@ -16,7 +16,7 @@ const OktaAuthHandler = () => {
     history.push("/login");
   };
 
-  const restoreOriginalUri = async (_oktaAuth, originalUri) => {
+  const restoreOriginalUri = async (_oktaAuth) => {
     history.push("/");
   };
 
