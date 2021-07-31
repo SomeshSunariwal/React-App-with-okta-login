@@ -14,11 +14,11 @@ const LoginHandler = () => {
   const logout = async () => oktaAuth.signOut();
 
   const button = authState.isAuthenticated ? (
-    <button className="btn btn-secondary me-2" onClick={logout}>
+    <button className="btn btn-secondary me-2 shadow-none" onClick={logout}>
       Logout
     </button>
   ) : (
-    <button className="btn btn-primary me-2" onClick={login}>
+    <button className="btn btn-primary me-2 shadow-none" onClick={login}>
       Login
     </button>
   );
@@ -35,7 +35,7 @@ const LoginHandler = () => {
               height="24"
               className="d-inline-block align-text-top"
             />
-            Data Center
+            Okta Auth
           </a>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">

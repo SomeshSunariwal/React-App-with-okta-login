@@ -4,10 +4,8 @@ const Protected = () => {
   const data = JSON.parse(localStorage.getItem("okta-token-storage"));
 
   const accessToken = data.accessToken.value;
-
   const idToken = data.idToken.value;
 
-  console.log("Here", data);
   return (
     <div className="container">
       <div>
@@ -19,20 +17,22 @@ const Protected = () => {
             className="form-control shadow-none mb-4"
             placeholder="Access Token"
             id="floatingTextarea2"
-            style={{ height: "250px" }}
+            style={{ height: "250px", cursor: "text", resize: "none" }}
             value={accessToken}
+            disabled
           ></textarea>
-          <label for="floatingTextarea2">Access Token</label>
+          <label>Access Token</label>
         </div>
         <div className="form-floating">
           <textarea
             className="form-control shadow-none mb-4"
             placeholder="idToken"
             id="floatingTextarea2"
-            style={{ height: "300px" }}
+            style={{ height: "300px", cursor: "text", resize: "none" }}
             value={idToken}
+            disabled
           ></textarea>
-          <label for="floatingTextarea2">idToken</label>
+          <label>idToken</label>
         </div>
       </div>
     </div>
