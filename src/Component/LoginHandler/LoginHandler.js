@@ -14,7 +14,7 @@ const LoginHandler = () => {
   const logout = async () => oktaAuth.signOut();
 
   const button = authState.isAuthenticated ? (
-    <button className="btn btn-secondary me-2 shadow-none" onClick={logout}>
+    <button className="btn btn-danger me-2 shadow-none" onClick={logout}>
       Logout
     </button>
   ) : (

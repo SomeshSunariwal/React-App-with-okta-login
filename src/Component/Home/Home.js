@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useOktaAuth } from "@okta/okta-react";
+import axios from "axios";
 
 export default function Home() {
   const { oktaAuth } = useOktaAuth();
   const data = JSON.parse(localStorage.getItem("okta-token-storage"));
+  let ResponseData = null;
+
+  const [ApiData, setApiData] = useState({
+    response: undefined,
+    error: null,
+  });
 
   // Data Null means no auth token set by okta
   const button =
@@ -21,6 +28,46 @@ export default function Home() {
       </button>
     );
 
+  useEffect(() => {
+    // Pre-Check
+    if (
+      ApiData.response === undefined &&
+      ApiData.error === null &&
+      data !== null
+    ) {
+      // backend call
+      axios
+        .get(process.env.REACT_APP_HOST + "/data", {
+          headers: { Authorization: "bearer " + data.accessToken.value },
+        })
+        .then((response) =>
+          setApiData((prev) => ({
+            ...prev,
+            response: response.data,
+          }))
+        )
+        .catch((error) =>
+          setApiData((prev) => ({
+            ...prev,
+            error: error,
+          }))
+        );
+    }
+  }, [ApiData, data]);
+
+  ResponseData =
+    data === null ? (
+      <h2>Not Logged IN</h2>
+    ) : ApiData.response !== undefined && ApiData.error === null ? (
+      ApiData.response.map((value, key) => {
+        return (
+          <div key={key}>
+            <h6>{value.Name}</h6>
+          </div>
+        );
+      })
+    ) : null;
+
   return (
     <div className="container">
       <div className="mt-5">
@@ -30,7 +77,7 @@ export default function Home() {
             <div className="col-md-8 fs-4">
               <p>
                 This is the example application of okta login. To test this
-                application please update the follwing information.
+                application please update the following information.
               </p>
               <h4>- REACT_APP_CLIENT_ID</h4>
               <h4>- REACT_APP_ISSUER </h4>
@@ -38,6 +85,19 @@ export default function Home() {
             </div>
             {button}
           </div>
+        </div>
+      </div>
+      <h5>Auth API Response</h5>
+      <div>
+        <div
+          className="form-floating container"
+          style={{ border: "solid 6px black" }}
+        >
+          {ResponseData === null && ApiData.error !== null ? (
+            <h4>{ApiData.error}</h4>
+          ) : (
+            ResponseData
+          )}
         </div>
       </div>
     </div>
