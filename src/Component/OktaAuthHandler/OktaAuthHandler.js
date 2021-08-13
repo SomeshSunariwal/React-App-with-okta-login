@@ -29,7 +29,7 @@ const OktaAuthHandler = () => {
     >
       <Route path="/" component={LoginHandler} />
       <Route path="/" exact component={Home} />
-      {/* Every Secure Route is Secured with okta. It will be not accessable till login*/}
+      {/* Every Secure Route is Secured with okta. It will be not accessible till login*/}
       <SecureRoute path="/protected" component={Protected} />
 
       {/* Normal Login Path */}
