@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, useHistory } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import { Security, SecureRoute, LoginCallback } from "@okta/okta-react";
 import { OktaAuth } from "@okta/okta-auth-js";
 import Home from "../Home/Home";
@@ -28,15 +28,15 @@ const OktaAuthHandler = () => {
       restoreOriginalUri={restoreOriginalUri}
     >
       <Route path="/" component={LoginHandler} />
-      <Route path="/" exact component={Home} />
-      {/* Every Secure Route is Secured with okta. It will be not accessible till login*/}
-      <SecureRoute path="/protected" component={Protected} />
-
-      {/* Normal Login Path */}
-      <Route path="/login" render={() => <Login config={oktaSignInConfig} />} />
-
-      {/* CallBack url which is same as set in okta application (sign in Redirect URI) */}
-      <Route path="/login/callback" component={LoginCallback} />
+      <Switch>
+        <Route path="/" exact={true} component={Home} />
+        <SecureRoute path="/protected" component={Protected} />
+        <Route
+          path="/login"
+          render={() => <Login config={oktaSignInConfig} />}
+        />
+        <Route path="/login/callback" component={LoginCallback} />s
+      </Switch>
     </Security>
   );
 };
