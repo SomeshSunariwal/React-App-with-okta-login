@@ -1,11 +1,18 @@
-FROM node:alpine
+FROM node:15.6.0-alpine
 
-WORKDIR /okta-auth-app
+# set working directory
+WORKDIR /app
 
-COPY ./package.json /okta-auth-app
+ENV PATH /app/node_modules/.bin:$PATH
 
-RUN npm install
+# install app dependencies
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm install --silent
+RUN npm install react-scripts@3.4.1 -g --silent
 
-COPY . .
+# add app
+COPY . ./
 
-CMD [ "npm", "run", "start" ]
+# start app
+CMD ["npm", "start"]
