@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useOktaAuth } from "@okta/okta-react";
 import axios from "axios";
+import Spinner from "../Spinner/Spinner";
 
 export default function Home() {
   const { oktaAuth } = useOktaAuth();
@@ -10,6 +11,7 @@ export default function Home() {
 
   const [ApiData, setApiData] = useState({
     response: undefined,
+    loading: true,
     error: null,
   });
 
@@ -43,6 +45,7 @@ export default function Home() {
         .then((response) =>
           setApiData((prev) => ({
             ...prev,
+            loading: false,
             response: response.data,
           }))
         )
@@ -55,6 +58,7 @@ export default function Home() {
           }
           setApiData((prev) => ({
             ...prev,
+            loading: false,
             error: errorMessage,
           }));
         });
@@ -64,7 +68,9 @@ export default function Home() {
   ResponseData =
     data === null ? (
       <h2>Not Logged IN</h2>
-    ) : ApiData.response !== undefined && ApiData.error === null ? (
+    ) : ApiData.response !== undefined &&
+      ApiData.error === null &&
+      ApiData.loading === false ? (
       ApiData.response.map((value, key) => {
         return (
           <div key={key}>
@@ -72,6 +78,8 @@ export default function Home() {
           </div>
         );
       })
+    ) : ApiData.loading === true ? (
+      <Spinner />
     ) : null;
 
   console.log(ApiData);
