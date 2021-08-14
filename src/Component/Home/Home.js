@@ -46,12 +46,18 @@ export default function Home() {
             response: response.data,
           }))
         )
-        .catch((error) =>
+        .catch((error) => {
+          let errorMessage;
+          if (error.message === "Network Error") {
+            errorMessage = error.message;
+          } else {
+            errorMessage = error;
+          }
           setApiData((prev) => ({
             ...prev,
-            error: error,
-          }))
-        );
+            error: errorMessage,
+          }));
+        });
     }
   }, [ApiData, data]);
 
@@ -67,6 +73,8 @@ export default function Home() {
         );
       })
     ) : null;
+
+  console.log(ApiData);
 
   return (
     <div className="container">

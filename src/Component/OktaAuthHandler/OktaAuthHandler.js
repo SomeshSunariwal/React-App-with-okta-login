@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import { Security, SecureRoute, LoginCallback } from "@okta/okta-react";
-import { OktaAuth, toRelativeUrl } from "@okta/okta-auth-js";
+import { OktaAuth } from "@okta/okta-auth-js";
 import Home from "../Home/Home";
 import LoginHandler from "../LoginHandler/LoginHandler";
 import Login from "../Login/Login";
@@ -18,7 +18,7 @@ const OktaAuthHandler = () => {
   };
 
   const restoreOriginalUri = async (_oktaAuth, originalUri) => {
-    history.replace(toRelativeUrl(originalUri, window.location.origin));
+    history.push("/");
   };
 
   return (
