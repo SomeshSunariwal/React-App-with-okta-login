@@ -22,7 +22,7 @@ React-with-okta-logic
 
 ## Rest app will look like this
 
-![image1](./images/image1.JPG)
+![image1](./images/image1.jpg)
 
 # Issues and Solution
 
