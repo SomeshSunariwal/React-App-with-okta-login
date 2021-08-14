@@ -24,7 +24,7 @@ React-with-okta-logic
 
 ![image1](./images/image1.jpg)
 
-# Issues and Solution
+# Issues and Solutions
 
 ### 1. Might see infinite loading issue while log in.
 
