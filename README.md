@@ -30,6 +30,24 @@ React-with-okta-logic
 
     This only occurs when you trying to test you app login functionality in the same browser in which you are already logged in as a admin.
 
+# Production Deployment
+
+1. Add homepage location in `package.json`
+
+```json
+{
+  "homepage": "/"
+}
+```
+
+2. Create React App Build
+
+```bash
+npm run build
+```
+
+3. See Docker Image for Nginx Ref.
+
 # Resource
 
 1. https://developer.okta.com/code/react/okta_react_sign-in_widget
