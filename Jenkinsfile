@@ -3,7 +3,8 @@ dockerImage = ''
 pipeline{
 
     agent any
-
+    
+    // Need to install Nodejs Plugin in Jenkins
     // Nodejs tool to build application 
     tools {
         nodejs "node"
