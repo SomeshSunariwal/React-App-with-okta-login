@@ -48,6 +48,9 @@ npm run build
 
 3. See Docker Image for Nginx Ref.
 
+# Jenkins Deployment
+![image4](./images/image3.png)
+
 # Resource
 
 1. https://developer.okta.com/code/react/okta_react_sign-in_widget
