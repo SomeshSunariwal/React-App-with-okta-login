@@ -13,4 +13,4 @@ COPY build .
 EXPOSE 80
 
 # Starting nginx
-CMD ["nginx"]
+CMD ["nginx", "-g","daemon off;"]
